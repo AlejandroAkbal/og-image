@@ -58,7 +58,8 @@ function getDefaultImages(images: string[], theme: Theme): string[] {
     if (!images || !images[0]) {
         return [defaultImage];
     }
-    if (!images[0].startsWith('https://assets.vercel.com/') && !images[0].startsWith('https://assets.zeit.co/')) {
+    const firstImageAsUrl = new URL(images[0])
+    if (!firstImageAsUrl.origin.match(/akbal\.dev$/)) {
         images[0] = defaultImage;
     }
     return images;
